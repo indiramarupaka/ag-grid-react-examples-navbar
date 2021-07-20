@@ -11,31 +11,36 @@ import { ExcelExportModule } from "@ag-grid-enterprise/excel-export";
 import { RangeSelectionModule } from "@ag-grid-enterprise/range-selection";
 import { ClipboardModule } from "@ag-grid-enterprise/clipboard";
 class Home extends React.Component {
+  
   constructor(props) {
+    
     super(props);
     this.state = {
       columnDefs: [
         {
-          field: "year",
+          field: "year" ,checkboxSelection: true,
           cellRenderer: "buttonRenderer"
         },
         { field: "athlete" },
-        { field: "year" },
-        { field: "gold" },
-        { field: "silver" },
-        { field: "bronze" }
+        { field: "year" ,editable: true},
+        { field: "gold",editable: true },
+        { field: "silver",editable: true },
+        { field: "bronze" ,editable: true}
       ],
       frameworkComponents: {
         // buttonRenderer: this.ButtonRenderer
         buttonRenderer: ButtonC
       },
       defaultColDef: {
-        editable: true,
+        
         sortable: true,
         flex: 1,
         minWidth: 80,
         filter: true,
-        resizable: true
+        resizable: true,
+        pagination:true,
+        checkBoxSelection:true
+
       },
       rowData: null,
       modules: [
@@ -48,7 +53,7 @@ class Home extends React.Component {
     };
   }
   ButtonRenderer = (params) => {
-    return <button onClick={this.buttonClicked}>click</button>;
+    return <button onClick={this.buttonClicked}></button>;
   };
   buttonClicked = (params) => {
     alert("clicked for -");
@@ -156,13 +161,14 @@ class Home extends React.Component {
     ];
     return result;
   };
-  btnClickHandle = () => {
-    this.props.history.push("/delete");
-  };
+  onBtExport = () => {
+    gridApi.exportDataAsExcel();
+  }
+  
   render() {
     return (
       <div style={{ width: "100%", height: "100vh" }}>
-        <button onClick={this.btnClickHandle}>Delete</button>
+        
         <div
           id="myGrid"
           style={{
@@ -171,6 +177,12 @@ class Home extends React.Component {
           }}
           className="ag-theme-alpine"
         >
+          <button
+            onClick={() => onBtExport()}
+            style={{ marginBottom: '5px', fontWeight: 'bold' }}
+          >
+            Export to Excel
+          </button>
           <AgGridReact
             modules={this.state.modules}
             columnDefs={this.state.columnDefs}
@@ -181,6 +193,9 @@ class Home extends React.Component {
             getContextMenuItems={this.getContextMenuItems}
             enableRangeSelection={true}
             allowContextMenuWithControlKey={true}
+            pagination={true}
+             paginationPageSize={50}
+
           />
         </div>
       </div>

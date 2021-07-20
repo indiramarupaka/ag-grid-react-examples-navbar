@@ -8,7 +8,7 @@ class Header extends React.Component {
     return (
       <div className="head">
         <Navbar bg="dark" variant="dark" expand="lg" fixed="top" sticky="top">
-          <Navbar.Brand href="#home">React Bootstrap Navbar</Navbar.Brand>
+          <Navbar.Brand href="#home">PSD MANAGEMENT</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
@@ -25,7 +25,15 @@ class Header extends React.Component {
                 activeClassName="text-danger"
                 to="/about"
               >
-                Aout Us
+
+              CaseStatus
+              </NavLink>
+              <NavLink
+                className="nav-link"
+                activeClassName="text-danger"
+                to="/delete"
+              >
+                ABout Us
               </NavLink>
               <NavLink
                 className="nav-link"
@@ -39,29 +47,23 @@ class Header extends React.Component {
                 activeClassName="text-danger"
                 to="/excel-export"
               >
-                Excel Export
+                {/* Excel Export
               </NavLink>
               <NavLink
                 className="nav-link"
                 activeClassName="text-danger"
                 to="/landing"
-              >
-                Landing
-              </NavLink>
-              <NavLink
-                className="nav-link"
-                activeClassName="text-danger"
-                to="/delete"
-              >
-                Delete Exp
+              > */}
+                
+                {/* Delete Exp
               </NavLink>
               <NavLink
                 className="nav-link"
                 activeClassName="text-danger"
                 to="/news"
               >
-                News API
-              </NavLink>
+                News API*/}
+              </NavLink> 
             </Nav>
           </Navbar.Collapse>
         </Navbar>
